@@ -46,9 +46,7 @@ Right now the plan is to be able to:
 ## Why I'm making this
 
 Mostly because I think it'd be useful for me.
-
 I've also never built anything involving audio processing before, so this seems like a fun excuse to learn about things like pitch detection, speech analysis, and signal processing.
-
 I'm intentionally trying to understand every part of the project instead of just pasting together code that works. If I add a library or write a function, I want to know *why* it's there.
 
-If other people find it useful someday, that's awesome too.
+If other people find it useful someday, that's awesome too 👍

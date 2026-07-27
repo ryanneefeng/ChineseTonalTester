@@ -40,13 +40,14 @@ def clean_pitch(times, frequencies, intensities):
     print("frames passing both filters:", len(clean_frequencies))
     return clean_times, clean_frequencies
 
-def print_semitone_range(frequencies):
+def get_semitone_range(frequencies):
     min_freq = min(frequencies)
     max_freq = max(frequencies)
     semitone_range = 12 * math.log2(max_freq / min_freq)
     print("min frequency:", min_freq)
     print("max frequency:", max_freq)
     print("semitone range:", semitone_range)
+    return semitone_range
 
 def plot_pitch(times, frequencies, title):
     plt.figure()
@@ -63,7 +64,7 @@ def main():
         filename = "ma1.wav"
     times, frequencies, intensities = extract_pitch_and_intensity(filename)
     clean_times, clean_frequencies = clean_pitch(times, frequencies, intensities)
-    print_semitone_range(clean_frequencies)
+    get_semitone_range(clean_frequencies)
     plot_pitch(clean_times, clean_frequencies, "Pitch contour")
 
 if __name__ == "__main__":

@@ -36,12 +36,17 @@ ruì ❌ (too flat)
 
 Right now the plan is to be able to:
 
-- [ ] Record audio from my microphone
-- [ ] Plot my pitch over time
-- [ ] Recognize basic Mandarin tones
-- [ ] Compare my pitch to the expected tone
-- [ ] Give simple feedback
-- [ ] Eventually support full sentences
+- [x] Record audio from my microphone
+- [x] Plot my pitch over time
+- [x] Recognize basic Mandarin tones (DTW alignment against each of the 4 reference tones, plus a magnitude check so near-flat recordings don't get misread as a falling tone — currently 3 for 4 correct on my own test recordings)
+- [x] Compare my pitch to the expected tone
+- [ ] Give simple feedback (the scores exist, just need to turn them into an actual readable verdict instead of four raw numbers)
+- [ ] Eventually support full sentences (pinyin parsing works standalone, not wired into a real multi-syllable loop yet)
+
+## Known issues
+
+- Tone 2 and tone 3 recordings sometimes get confused with each other. Both references touch the bottom of the pitch scale once normalized, even though a real tone 2 shouldn't — this is a reference-shape problem, not a bug in the comparison logic itself.
+- The four reference shapes are idealized curves from the Chao tone-number system (55/35/214/51), not drawn from real speech yet.
 
 ## Why I'm making this
 

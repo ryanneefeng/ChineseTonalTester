@@ -38,15 +38,49 @@ Right now the plan is to be able to:
 
 - [x] Record audio from my microphone
 - [x] Plot my pitch over time
-- [x] Recognize basic Mandarin tones (DTW alignment against each of the 4 reference tones, plus a magnitude check so near-flat recordings don't get misread as a falling tone — currently 3 for 4 correct on my own test recordings)
+- [x] Recognize basic Mandarin tones (DTW alignment against each of the 4 reference tones, plus a magnitude check for near-flat recordings and a timing check for tone 2/3 confusion — 4/4 on my own test recordings)
 - [x] Compare my pitch to the expected tone
-- [ ] Give simple feedback (the scores exist, just need to turn them into an actual readable verdict instead of four raw numbers)
+- [x] Give simple feedback (score % + short message, reusing the same signals from tone detection)
 - [ ] Eventually support full sentences (pinyin parsing works standalone, not wired into a real multi-syllable loop yet)
 
 ## Known issues
 
-- Tone 2 and tone 3 recordings sometimes get confused with each other. Both references touch the bottom of the pitch scale once normalized, even though a real tone 2 shouldn't — this is a reference-shape problem, not a bug in the comparison logic itself.
-- The four reference shapes are idealized curves from the Chao tone-number system (55/35/214/51), not drawn from real speech yet.
+- Only tested on a handful of recordings per tone, one speaker. Real robustness is unproven.
+- The four reference shapes are idealized curves from the Chao tone-number system (55/35/214/51), not drawn from real speech.
+- No main.py yet — each script below is run individually.
+
+## Example usage
+
+There's no single entry point yet — `main.py` is still the last unchecked item above. Until then, each script runs on its own.
+
+**The core loop — record, then get feedback:**
+
+    python record.py ma3.wav
+
+Press Enter to start, say the syllable, press Enter to stop. Saves and plays it back.
+
+    python feedback.py ma3.wav 3
+
+Second argument is the tone you *meant* to say (1-4). Prints a score and a short message, e.g. `85 % - Good dip and rise.`
+
+**Everything else is a diagnostic tool** — useful for understanding *why* a score came out how it did, not something you need every rep:
+
+    python analyze_pitch.py ma3.wav
+
+Raw pitch-over-time chart, plus the semitone range (how much your pitch actually moved).
+
+    python compare_tones.py ma3.wav 3
+
+Plots your recording against one specific reference tone shape, overlaid.
+
+    python dtw_compare.py ma3.wav
+
+Compares against all four reference tones at once and prints a cost for each — doesn't need you to say which tone you meant, useful for checking if a recording is genuinely ambiguous between two tones.
+
+## Project structure
+
+Run directly: `record.py`, `analyze_pitch.py`, `compare_tones.py`, `dtw_compare.py`, `feedback.py`
+Imported only, not run on their own: `reference_tones.py`, `dtw.py`, `pinyin_parser.py`
 
 ## Why I'm making this
 

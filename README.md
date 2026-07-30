@@ -51,9 +51,9 @@ Right now the plan is to be able to:
 
 ## Example usage
 
-There's no single entry point yet — `main.py` is still the last unchecked item above. Until then, each script runs on its own.
+There's no single entry point yet so `main.py` is still the last unchecked item above. Until then, each script runs on its own.
 
-**The core loop — record, then get feedback:**
+**record, then get feedback:**
 
     python record.py ma3.wav
 

@@ -47,7 +47,7 @@ Right now the plan is to be able to:
 
 - Only tested on a handful of recordings per tone, one speaker. Real robustness is unproven.
 - The four reference shapes are idealized curves from the Chao tone-number system (55/35/214/51), not drawn from real speech.
-- No main.py yet — each script below is run individually.
+- No main.py yet so each script below is run individually.
 
 ## Example usage
 

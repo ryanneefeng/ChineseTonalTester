@@ -61,7 +61,7 @@ The main way to use this:
 Type a pinyin phrase with tone marks (like `nǐ hǎo, wǒ jiào ruì ān`), and it walks you through recording each syllable one at a time, scoring each against its correct tone, and prints a summary at the end.
 
 ### Example Final Output
-'''
+```
 nǐ   94% - Good dip and rise.
 hǎo  91% - Good dip and rise.
 wǒ   88% - Good dip and rise.
@@ -70,7 +70,7 @@ ruì  58% - Not enough fall. Commit harder to dropping your pitch.
 ān   95% - Good, nice and flat.
 
 Average score: 81%
-'''
+```
 
 **Single syllable, no full app:**
 

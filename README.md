@@ -40,14 +40,15 @@ Right now the plan is to be able to:
 - [x] Plot my pitch over time
 - [x] Recognize basic Mandarin tones (DTW alignment against each of the 4 reference tones, plus a magnitude check for near-flat recordings and a timing check for tone 2/3 confusion — 4/4 on my own test recordings)
 - [x] Compare my pitch to the expected tone
-- [x] Give simple feedback (score % + short message, reusing the same signals from tone detection)
-- [ ] Eventually support full sentences (pinyin parsing works standalone, not wired into a real multi-syllable loop yet)
+- [x] Give simple feedback (score % + short message)
+- [x] Support full sentences (main.py parses a full pinyin phrase, prompts and scores one syllable at a time, then summarizes)
 
 ## Known issues
 
-- Only tested on a handful of recordings per tone, one speaker. Real robustness is unproven.
+- Only tested on a handful of recordings per tone, one speaker. Real robustness unproven.
 - The four reference shapes are idealized curves from the Chao tone-number system (55/35/214/51), not drawn from real speech.
-- No main.py yet so each script below is run individually.
+- Syllables without tone marks (typed without diacritics) are rejected rather than handled — no support for genuinely neutral-tone syllables yet.
+- Recording is prompted one syllable at a time, not from one continuous natural recording of the whole phrase.
 
 ## Example usage
 

@@ -32,6 +32,8 @@ jiào ❌ (too flat)
 ruì ❌ (too flat)
 ān ✅
 ```
+Needs a working microphone. Note the pip package is `praat-parselmouth` but you `import parselmouth` in code.
+
 ## Goals
 
 Right now the plan is to be able to:
@@ -52,9 +54,25 @@ Right now the plan is to be able to:
 
 ## Example usage
 
-There's no single entry point yet so `main.py` is still the last unchecked item above. Until then, each script runs on its own.
+The main way to use this:
 
-**record, then get feedback:**
+    python main.py
+
+Type a pinyin phrase with tone marks (like `nǐ hǎo, wǒ jiào ruì ān`), and it walks you through recording each syllable one at a time, scoring each against its correct tone, and prints a summary at the end.
+
+### Example Final Output
+'''
+nǐ   94% - Good dip and rise.
+hǎo  91% - Good dip and rise.
+wǒ   88% - Good dip and rise.
+jiào 61% - Not enough fall. Commit harder to dropping your pitch.
+ruì  58% - Not enough fall. Commit harder to dropping your pitch.
+ān   95% - Good, nice and flat.
+
+Average score: 81%
+'''
+
+**Single syllable, no full app:**
 
     python record.py ma3.wav
 
@@ -62,9 +80,9 @@ Press Enter to start, say the syllable, press Enter to stop. Saves and plays it 
 
     python feedback.py ma3.wav 3
 
-Second argument is the tone you *meant* to say (1-4). Prints a score and a short message, e.g. `85 % - Good dip and rise.`
+Second argument is the tone you meant to say (1-4). Prints a score and a short message, e.g. `85 % - Good dip and rise.`
 
-**Everything else is a diagnostic tool** — useful for understanding *why* a score came out how it did, not something you need every rep:
+**Diagnostic tools** — useful for understanding *why* a score came out how it did, not something you need every rep:
 
     python analyze_pitch.py ma3.wav
 
@@ -76,17 +94,15 @@ Plots your recording against one specific reference tone shape, overlaid.
 
     python dtw_compare.py ma3.wav
 
-Compares against all four reference tones at once and prints a cost for each — doesn't need you to say which tone you meant, useful for checking if a recording is genuinely ambiguous between two tones.
+Compares against all four reference tones at once and prints a cost for each. It doesn't need you to say which tone you meant, so it's useful for checking if a recording is genuinely ambiguous between two tones.
 
 ## Project structure
 
-Run directly: `record.py`, `analyze_pitch.py`, `compare_tones.py`, `dtw_compare.py`, `feedback.py`
+Run directly: `main.py`, `record.py`, `analyze_pitch.py`, `compare_tones.py`, `dtw_compare.py`, `feedback.py`
 Imported only, not run on their own: `reference_tones.py`, `dtw.py`, `pinyin_parser.py`
 
 ## Why I'm making this
 
-Mostly because I think it'd be useful for me.
-I've also never built anything involving audio processing before, so this seems like a fun excuse to learn about things like pitch detection, speech analysis, and signal processing.
-I'm intentionally trying to understand every part of the project instead of just pasting together code that works. If I add a library or write a function, I want to know *why* it's there.
+Mostly because I think it'd be useful for me. I've also never built anything involving audio processing before, so this seems like a fun excuse to learn about things like pitch detection, speech analysis, and signal processing. I'm intentionally trying to understand every part of the project instead of just pasting together code that works. If I add a library or write a function, I want to know why it's there.
 
 If other people find it useful someday, that's awesome too 👍
